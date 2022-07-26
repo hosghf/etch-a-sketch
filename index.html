@@ -5,11 +5,17 @@
     <link rel="stylesheet" href="style.css">
   </head>
 
-  <body>
-    
-      
+  <body>     
     <div class="container">
       <button id="squareNumber-btn">Enter number of squares per side</button>
+      
+      <form class="color-mode">
+        <input type="radio" id="single-color" name="colorMode" checked value="single">
+        <label for="single-color">single color mode</label>
+
+        <input type="radio" id="multiple-color" name="colorMode" value="multiple">
+        <label for="multiple-color">colorfull mode</label>
+      </form>
       
       <div class="board"></div>
     </div>

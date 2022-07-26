@@ -1,8 +1,10 @@
 const board = document.querySelector('.board')
 const promptSquareNumberBtn = document.querySelector('#squareNumber-btn')
+const totalBoardDimention = 420
 let gridItem
 let gridNumber = 10
-const totalBoardDimention = 420
+let mousoverCount = 0
+let colorMode = 'single'
 
 createGrid(board, gridNumber)
 
@@ -21,7 +23,7 @@ promptSquareNumberBtn.addEventListener('click', () => {
   do {
     let msg = "Enter number of square per side"
     if(gridNumber > 100) msg = "Enter number under 100"
-    
+
     gridNumber = prompt(msg)
   } while(gridNumber > 100)
 
@@ -43,5 +45,34 @@ function createGrid(board, gridNumber) {
 }
 
 function addClass() {
-  this.classList.add('hoverd-grid-item')
+  if(colorMode === 'single'){
+    this.style.background = 'blue'
+    return
+  }
+
+  let r = Math.floor(Math.random() * 255)
+  let g = Math.floor(Math.random() * 255)
+  let b = Math.floor(Math.random() * 255)
+
+  mousoverCount += 1
+
+  // after 10 color change, the number 10 color should be black, becuase problem description ask this
+  if(mousoverCount === 10) {
+    mousoverCount = 0
+    r = 0
+    g = 0
+    b = 0
+  }
+  this.style.background = `rgb(${r}, ${g}, ${b})`
+}
+
+
+let radios = document.getElementsByName('colorMode')
+
+radios.forEach((radio) => {
+  radio.addEventListener('click', changeColorMode)
+})
+
+function changeColorMode() {
+  colorMode = this.value
 }
