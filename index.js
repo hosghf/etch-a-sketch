@@ -5,20 +5,16 @@ let gridItem
 let gridNumber = 10
 let mousoverCount = 0
 let colorMode = 'single'
+let radios = document.getElementsByName('colorMode')
+
+radios.forEach((radio) => {
+  radio.addEventListener('click', e => colorMode = e.currentTarget.value)
+})
 
 createGrid(board, gridNumber)
 
 promptSquareNumberBtn.addEventListener('click', () => {
-  // remove board of grids
-  const container = document.querySelector('.container')
-  let board = container.querySelector('.board')
-  container.removeChild(board)
-  board = document.createElement('div')
-  board.classList.add('board')
-  container.appendChild(board)
-  // End of remove board of grids
-
-  // removeBoard()  // TODO replace above code in this function for cleaning code
+  removeBoard()
 
   do {
     let msg = "Enter number of square per side"
@@ -38,13 +34,13 @@ function createGrid(board, gridNumber) {
     gridItem.classList.add('grid-item')
     gridItem.style.width = `${gridItmeSizeWithoutBoarder}px`
     gridItem.style.height = `${gridItmeSizeWithoutBoarder}px`
-    gridItem.addEventListener('mouseover', addClass)
+    gridItem.addEventListener('mouseover', changeColor)
           
     board.appendChild(gridItem)
   }
 }
 
-function addClass() {
+function changeColor() {
   if(colorMode === 'single'){
     this.style.background = 'blue'
     return
@@ -66,13 +62,11 @@ function addClass() {
   this.style.background = `rgb(${r}, ${g}, ${b})`
 }
 
-
-let radios = document.getElementsByName('colorMode')
-
-radios.forEach((radio) => {
-  radio.addEventListener('click', changeColorMode)
-})
-
-function changeColorMode() {
-  colorMode = this.value
+function removeBoard() {
+  const container = document.querySelector('.container')
+  let board = container.querySelector('.board')
+  container.removeChild(board)
+  board = document.createElement('div')
+  board.classList.add('board')
+  container.appendChild(board)
 }
