@@ -27,8 +27,6 @@ body {
 }
 
 .board {
-  width: 420px;
-  height: 420px;
   margin: auto;
   margin-top: 20px;
   background: green;

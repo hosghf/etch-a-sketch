@@ -11,6 +11,9 @@ radios.forEach((radio) => {
   radio.addEventListener('click', e => colorMode = e.currentTarget.value)
 })
 
+board.style.width = `${totalBoardDimention}px`
+board.style.height = `${totalBoardDimention}px`
+
 createGrid(board, gridNumber)
 
 promptSquareNumberBtn.addEventListener('click', () => {
